@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourierController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'courier'], function () {
-    Route::get('/', [App\Http\Controllers\CourierController::class, 'index']);
-    Route::get('/show', [App\Http\Controllers\CourierController::class, 'show']);
-    Route::post('/store', [App\Http\Controllers\CourierController::class, 'store']);
-    Route::delete('/destroy/{courier}', [App\Http\Controllers\CourierController::class, 'destroy']);
+    // /api/courier?order_by[created_at]=desc
+    Route::get('/', [CourierController::class, 'index']);
+    Route::get('/show', [CourierController::class, 'show']);
+    Route::post('/store', [CourierController::class, 'store']);
+    Route::delete('/destroy/{courier}', [CourierController::class, 'destroy']);
 });
