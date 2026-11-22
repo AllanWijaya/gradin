@@ -73,7 +73,7 @@ class CourierController extends Controller
             $request,
             $instance,
             ['name'],
-            ['name' => 'asc',]
+            ['name' => 'asc', 'created_at' => 'desc']
         );
 
         return response()->json($data);
