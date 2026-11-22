@@ -58,6 +58,17 @@ class CourierController extends Controller
     {
         $instance = Courier::query();
 
+        if ($request->filled('level')) {
+            $levels = array_values(array_filter(
+                array_map('trim', explode(',', $request->query('level'))),
+                fn($level) => ctype_digit($level)
+            ));
+
+            if (!empty($levels)) {
+                $instance->whereIn('level', $levels);
+            }
+        }
+
         $data = $this->dataPaginate(
             $request,
             $instance,

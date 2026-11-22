@@ -20,7 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'courier'], function () {
-    // /api/courier?order_by[created_at]=desc
     Route::get('/', [CourierController::class, 'index']);
     Route::get('/show', [CourierController::class, 'show']);
     Route::post('/store', [CourierController::class, 'store']);
